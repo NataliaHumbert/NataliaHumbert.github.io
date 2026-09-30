@@ -71,12 +71,32 @@ main, footer {
   margin: 0 auto;
 }
 .hero {
-  min-height: calc(100vh - 86px);
-  display: grid;
-  grid-template-columns: 1.08fr .92fr;
-  gap: 64px;
+  position: relative;
+  min-height: 650px;
+  margin: 44px 0 96px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
   align-items: center;
-  padding: 80px 0 96px;
+  justify-content: flex-end;
+  padding: 64px;
+  background:
+    linear-gradient(90deg, rgba(7,17,31,.08) 0%, rgba(7,17,31,.08) 38%, rgba(7,17,31,.66) 62%, rgba(7,17,31,.96) 100%),
+    url("here_banner.png") center center / cover no-repeat;
+  box-shadow: 0 28px 80px rgba(0,0,0,.28);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(7,17,31,.42), transparent 35%);
+}
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  width: min(52%, 590px);
 }
 .eyebrow, .section-label, .project-type {
   letter-spacing: .16em;
@@ -87,23 +107,23 @@ main, footer {
 .hero h1 {
   margin: 18px 0 26px;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(4rem, 8vw, 7.4rem);
+  font-size: clamp(4rem, 7vw, 6.8rem);
   line-height: .88;
   letter-spacing: -.075em;
 }
 .hero h1 span {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(244,247,251,.72);
+  -webkit-text-stroke: 1px rgba(244,247,251,.8);
 }
 .hero-text {
-  max-width: 650px;
-  font-size: 1.25rem;
-  color: var(--muted);
+  max-width: 590px;
+  font-size: 1.18rem;
+  color: #c1cada;
 }
 .hero-actions {
   display: flex;
   gap: 12px;
-  margin-top: 34px;
+  margin-top: 32px;
 }
 .button {
   padding: 13px 19px;
@@ -116,88 +136,20 @@ main, footer {
   background: var(--cyan);
 }
 .button.secondary {
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(7,17,31,.5);
+  backdrop-filter: blur(8px);
 }
 .quick-facts {
   display: flex;
-  gap: 38px;
-  margin-top: 58px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
+  gap: 30px;
+  margin-top: 44px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.16);
 }
 .quick-facts div { display: grid; gap: 2px; }
 .quick-facts strong { font-family: "Space Grotesk"; }
-.quick-facts span { color: var(--muted); font-size: .78rem; }
-
-.hero-visual {
-  position: relative;
-  height: 560px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 65% 30%, rgba(102,227,255,.14), transparent 32%),
-    linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
-}
-.hero-visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-  background-size: 34px 34px;
-}
-.hero-monogram {
-  position: absolute;
-  right: 32px;
-  bottom: -28px;
-  font: 700 11rem/1 "Space Grotesk";
-  letter-spacing: -.11em;
-  color: rgba(255,255,255,.035);
-}
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(1px);
-  border: 1px solid rgba(102,227,255,.35);
-}
-.orb-one { width: 290px; height: 290px; right: -80px; top: 50px; }
-.orb-two { width: 130px; height: 130px; left: 38px; bottom: 46px; }
-.circuit-card {
-  position: absolute;
-  width: 230px;
-  padding: 18px;
-  border: 1px solid rgba(102,227,255,.22);
-  border-radius: 14px;
-  background: rgba(7,17,31,.84);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 16px 60px rgba(0,0,0,.3);
-}
-.circuit-card span {
-  color: var(--cyan);
-  font: 600 .68rem/1 "Space Grotesk";
-}
-.circuit-card b {
-  display: block;
-  margin-top: 16px;
-  font: 600 1rem/1.2 "Space Grotesk";
-  letter-spacing: .08em;
-}
-.circuit-card small { color: var(--muted); }
-.card-one { left: 44px; top: 74px; }
-.card-two { right: 38px; top: 230px; }
-.card-three { left: 74px; bottom: 58px; }
-.trace {
-  position: absolute;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  opacity: .45;
-  transform-origin: left center;
-}
-.trace-a { width: 310px; top: 210px; left: 100px; transform: rotate(28deg); }
-.trace-b { width: 250px; top: 390px; left: 145px; transform: rotate(-34deg); }
+.quick-facts span { color: #aeb9cc; font-size: .76rem; }
 
 .section {
   padding: 110px 0;
@@ -330,22 +282,36 @@ footer {
 
 @media (max-width: 900px) {
   nav { display: none; }
-  .hero { grid-template-columns: 1fr; }
-  .hero-visual { height: 460px; }
+  .hero {
+    min-height: 620px;
+    padding: 48px 40px;
+    justify-content: flex-end;
+    background-position: 36% center;
+  }
+  .hero-copy { width: 58%; }
   .split, .experience-card, .education-card { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
   .coursework { justify-content: flex-start; }
 }
 @media (max-width: 600px) {
   .site-header, main, footer { width: min(calc(100% - 28px), var(--max)); }
-  .hero { padding-top: 64px; }
-  .hero h1 { font-size: 4.15rem; }
-  .quick-facts { gap: 18px; flex-wrap: wrap; }
-  .hero-visual { height: 430px; }
-  .circuit-card { width: 190px; padding: 15px; }
-  .card-one { left: 20px; }
-  .card-two { right: 20px; top: 210px; }
-  .card-three { left: 36px; bottom: 34px; }
+  .hero {
+    min-height: 690px;
+    margin-top: 24px;
+    padding: 330px 24px 32px;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background:
+      linear-gradient(to bottom, rgba(7,17,31,.02) 0%, rgba(7,17,31,.1) 34%, rgba(7,17,31,.92) 61%, rgba(7,17,31,1) 100%),
+      url("here_banner.png") 27% top / auto 390px no-repeat,
+      #07111f;
+  }
+  .hero-copy { width: 100%; }
+  .hero h1 { font-size: 3.7rem; margin: 12px 0 18px; }
+  .hero-text { font-size: 1rem; }
+  .hero-actions { margin-top: 24px; }
+  .quick-facts { gap: 16px; flex-wrap: wrap; margin-top: 30px; }
+  .quick-facts div { min-width: 95px; }
   .section { padding: 82px 0; }
   .section-heading-row { align-items: flex-start; flex-direction: column; }
   .project-card { grid-template-columns: 1fr; }
